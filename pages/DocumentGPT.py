@@ -38,6 +38,7 @@ class ChatCallbackHandler(BaseCallbackHandler):
 llm = ChatOpenAI(
     temperature=0.1,
     streaming=True,
+    # 모델의 streaming 응답 표시
     callbacks=[
         ChatCallbackHandler(),
     ],
@@ -151,6 +152,6 @@ if file:
         # document 를 format 하고 prompt 를 format 하고
         # format 한 prompt 를 llm 에 보내는 것들이 모두 여기서 일어난다.
         with st.chat_message("ai"):
-            response = chain.invoke(message)
+            chain.invoke(message)
 else:
     st.session_state["messages"] = []
